@@ -41,7 +41,31 @@ const NavBar = () => {
 		{
             user ? <>
             
-            <img className="w-16 -mx-2.5 ring ring-white dark:ring-gray-900 rounded-full object-cover" src={user?.photoURL} alt="" />
+            <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
+          <img className="  " src={user?.photoURL} />
+        </div>
+      </label>
+
+      
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-gradient-to-r  from-slate-900 to-cyan-600 shadow-2xl bg-opacity-10 rounded-box w-56">
+       <div className="space-y-3 text-center">
+       <img className="w-28 mx-auto object-cover rounded-full" src={user?.photoURL} alt="" />
+         <h2 className="text-center text-xl" >{user?.displayName}</h2>
+        <Link to='/profice'>
+        <button className="btn text-white border-none  btn-primary ">View Profile</button>
+        
+        </Link> 
+       </div>
+        <li>
+        <Link >My Services</Link>
+        </li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><Link onClick={logOut} className="text-primary" >Logout</Link></li>
+      </ul>
+    </div>
+         
             </>
             :
             <> 	
@@ -61,12 +85,14 @@ const NavBar = () => {
             user ? <>
             
            
-            <div className="dropdown dropdown-end">
+     <div className="dropdown dropdown-end">
       <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
         <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
           <img className="  " src={user?.photoURL} />
         </div>
       </label>
+
+
       <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  lg:bg-gradient-to-r bg-gradient-to-l from-slate-900 to-cyan-600 shadow-2xl bg-opacity-10 rounded-box w-56">
        <div className="space-y-3 text-center">
        <img className="w-28 mx-auto object-cover rounded-full" src={user?.photoURL} alt="" />
