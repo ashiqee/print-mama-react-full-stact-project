@@ -2,9 +2,12 @@ import { NavLink } from "react-router-dom";
 import LogoText from "../../../Components/sharedComponents/LogoText";
 
 import SignUpBtn from "../../../Components/sharedComponents/Button/SignUpBtn";
+import useAuth from "../../../Components/Hooks/useAuth";
 
 
 const NavBar = () => {
+
+    const {user}= useAuth()
 
     const navMenu = 
         <>
@@ -20,7 +23,7 @@ const NavBar = () => {
     return (
         
         
- <header className="p-4 bg-gradient-to-r from-slate-900 to-cyan-600 bg-opacity-80 ">
+ <header className="p-4 lg:bg-gradient-to-r bg-gradient-to-l from-slate-900 to-cyan-600 shadow-2xl bg-opacity-80 ">
 	<div className="container flex justify-between h-10 mx-auto">
 
     <div className="navbar-start lg:hidden">
@@ -34,6 +37,19 @@ const NavBar = () => {
     </div>
   </div>
   <div className="flex items-center"><h2 className="font-bold mr-5"><LogoText/></h2></div>
+  <div className="items-center flex-shrink-0 lg:hidden gap-5 flex">
+		{
+            user ? <>
+            
+            <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+            </>
+            :
+            <> 	
+            <NavLink className="px-3 py-1 text-sm font-semibold hover:bg-primary text-white transition-colors duration-300 transform border-2 rounded-md" to='/login' >
+            Sign In</NavLink>
+           <NavLink className="" to='/signup' ><SignUpBtn/></NavLink> </>
+        }
+		</div>
 		<div className="flex items-center">
 
 	<ul className="items-stretch justify-center hidden space-x-10 lg:flex">
@@ -41,9 +57,18 @@ const NavBar = () => {
 			</ul>
 		</div>
 		<div className="items-center flex-shrink-0 hidden gap-5 lg:flex">
-			<NavLink className="px-3 py-1 text-sm font-semibold hover:bg-primary text-white transition-colors duration-300 transform border-2 rounded-md hover:bg-gray-700" to='/login' >
-             Sign In</NavLink>
-			<NavLink className="" to='/signup' ><SignUpBtn/></NavLink>
+		{
+            user ? <>
+            
+            {user?.displayName}
+            <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+            </>
+            :
+            <> 	
+            <NavLink className="px-3 py-1 text-sm font-semibold hover:bg-primary text-white transition-colors duration-300 transform border-2 rounded-md" to='/login' >
+            Sign In</NavLink>
+           <NavLink className="" to='/signup' ><SignUpBtn/></NavLink> </>
+        }
 		</div>
 
 	</div>

@@ -1,7 +1,9 @@
-import { Link } from "react-router-dom";
-import Swal from "sweetalert2";
+import { Link, useNavigate } from "react-router-dom";
 import LogoText from "../../Components/sharedComponents/LogoText";
 import SignUpBtn from "../../Components/sharedComponents/Button/SignUpBtn";
+import useAuth from "../../Components/Hooks/useAuth";
+import { updateProfile } from "firebase/auth";
+import toast from "react-hot-toast";
 
 
 
@@ -9,8 +11,10 @@ import SignUpBtn from "../../Components/sharedComponents/Button/SignUpBtn";
 
 const Register = () => {
 
+    const {createUser,user}= useAuth()
+    const navigate = useNavigate()
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
 
     const form = e.target;
@@ -20,73 +24,73 @@ const Register = () => {
     const full_name = form.fullName.value;
     const photoURL = form.profileImg.value;
 
-    const userInfo = {
-      full_name: form.fullName.value,
-      photoURL: form.profileImg.value,
-      userEmail: form.email.value,
-    };
+    // const userInfo = {
+    //   full_name: form.fullName.value,
+    //   photoURL: form.profileImg.value,
+    //   userEmail: form.email.value,
+    // };
 
-    console.log(userInfo);
+    // console.log(userInfo);
 
     if (password.length < 6) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Your password must six digit!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+    toast.error('password must be six digit')
       return;
     } else if (!/[A-Z]/.test(password)) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Your password must need one Capital Letter",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+     toast.error("Your password must need one Capital Letter")
       return;
     } else if (
       !/(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{6,}/.test(
         password
       )
     ) {
-      Swal.fire({
-        position: "center",
-        icon: "error",
-        title: "Your password must need one special character!",
-        showConfirmButton: false,
-        timer: 1500,
-      });
+      toast.error("Your password must need one special character!")
       return;
     }
+const toastId = toast.loading('Creating user...')
+const toastIdUpdate = toast.loading('Updating user...')
+   try{
+  const userInfo=  await createUser(email, password)
+    toast.success('User Created',{id:toastId})
 
-    createUser(email, password)
-      .then((res) => {
-        console.log(res.user);
+   
+        await updateProfile(userInfo.user,{
+            displayName: full_name,
+            photoURL: photoURL,
+          }  )
+          toast.success("User Data Updated",{id:toastIdUpdate})
+          navigate('/')
 
-        updateProfile(res.user, {
-          displayName: full_name,
-          photoURL: photoURL,
-        }).then(() => {
-          console.log("Update Profile");
-        });
-      })
-      .catch();
+    
+        
 
-    //user data send database
- 
-        if (data.insertedId) {
-          Swal.fire({
-            position: "center",
-            icon: "success",
-            title: "Data Update Successfully!",
-            showConfirmButton: false,
-            timer: 1500,
-          });
+   } catch(err){
+    console.log(err);
+    toast.error(err.message,{id:toastId})
+   }
+    
+   
+   
+    
+   
+        
+  }
+    
       
-  };
 
+//     //user data send database
+ 
+//         if (data.insertedId) {
+//           Swal.fire({
+//             position: "center",
+//             icon: "success",
+//             title: "Data Update Successfully!",
+//             showConfirmButton: false,
+//             timer: 1500,
+//           });
+      
+//   }
+  
+  
   return (
     <div className="container px-6 mx-auto">
    <nav className="flex flex-col py-auto pt-6 sm:flex-row sm:justify-between sm:items-center">
@@ -181,17 +185,7 @@ const Register = () => {
                   />
                 </div>
 
-                {/* <div>
-                  <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
-                    Confirm password
-                  </label>
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Enter your password"
-                    className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
-                  />
-                </div> */}
+             
 
                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   <input type="submit" value="Sign Up" />
