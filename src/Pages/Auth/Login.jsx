@@ -21,14 +21,10 @@ const Login = () => {
 
         <div className="flex flex-col items-center py-0 lg:h-[32rem] lg:flex-row">
             <div className="lg:w-1/2 hidden lg:block">
-                {/* <h2 className="text-3xl font-semibold text-gray-100 lg:text-4xl">Get Printing Service</h2> */}
-
-                {/* <h3 className=" text-2xl font-semibold text-gray-100">
-                    Hello <span className="text-blue-400">Guest</span>
-                </h3> */}
+             
                 <img src="https://i.ibb.co/4Kmbyf4/Humaaans-3-Characters.png" alt="Humaaans-3-Characters" border="0"/>
-{/* <img className="rounded-xl" src="https://img.freepik.com/premium-vector/organic-flat-printing-industry-illustration_52683-59566.jpg" alt="" />
-                 */}
+
+                 
             </div>
 
 

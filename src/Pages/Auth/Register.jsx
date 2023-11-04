@@ -75,16 +75,7 @@ const Register = () => {
       .catch();
 
     //user data send database
-    fetch("http://localhost:5000/user", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(userInfo),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
+ 
         if (data.insertedId) {
           Swal.fire({
             position: "center",
@@ -93,8 +84,7 @@ const Register = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-        }
-      });
+      
   };
 
   return (
