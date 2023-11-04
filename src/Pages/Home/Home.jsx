@@ -1,9 +1,11 @@
-import Slider from "./Slider";
+import Banner from "./Banner";
+
 
 const Home = () => {
     return (
         <div>
-           <Slider/>
+          <Banner/>
+          
         </div>
     );
 };
