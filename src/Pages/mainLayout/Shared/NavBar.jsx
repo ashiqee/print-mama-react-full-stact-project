@@ -1,6 +1,6 @@
 import { NavLink } from "react-router-dom";
 import LogoText from "../../../Components/sharedComponents/LogoText";
-import LoginBtn from "../../../Components/sharedComponents/Button/LoginBtn";
+
 import SignUpBtn from "../../../Components/sharedComponents/Button/SignUpBtn";
 
 
