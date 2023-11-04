@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import LogoText from "../../../Components/sharedComponents/LogoText";
 
 import SignUpBtn from "../../../Components/sharedComponents/Button/SignUpBtn";
@@ -7,7 +7,7 @@ import useAuth from "../../../Components/Hooks/useAuth";
 
 const NavBar = () => {
 
-    const {user}= useAuth()
+    const {user,logOut}= useAuth()
 
     const navMenu = 
         <>
@@ -23,7 +23,7 @@ const NavBar = () => {
     return (
         
         
- <header className="p-4 lg:bg-gradient-to-r bg-gradient-to-l from-slate-900 to-cyan-600 shadow-2xl bg-opacity-80 ">
+ <header className="p-4 lg:bg-gradient-to-r bg-gradient-to-l from-slate-900 rounded-b-2xl to-cyan-600 shadow-2xl bg-opacity-80 ">
 	<div className="container flex justify-between h-10 mx-auto">
 
     <div className="navbar-start lg:hidden">
@@ -41,7 +41,7 @@ const NavBar = () => {
 		{
             user ? <>
             
-            <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+            <img className="w-16 -mx-2.5 ring ring-white dark:ring-gray-900 rounded-full object-cover" src={user?.photoURL} alt="" />
             </>
             :
             <> 	
@@ -60,8 +60,31 @@ const NavBar = () => {
 		{
             user ? <>
             
-            {user?.displayName}
-            <img className="w-12 rounded-full" src={user?.photoURL} alt="" />
+           
+            <div className="dropdown dropdown-end">
+      <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+        <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
+          <img className="  " src={user?.photoURL} />
+        </div>
+      </label>
+      <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2  lg:bg-gradient-to-r bg-gradient-to-l from-slate-900 to-cyan-600 shadow-2xl bg-opacity-10 rounded-box w-56">
+       <div className="space-y-3 text-center">
+       <img className="w-28 mx-auto object-cover rounded-full" src={user?.photoURL} alt="" />
+         <h2 className="text-center text-xl" >{user?.displayName}</h2>
+        <Link to='/profice'>
+        <button className="btn text-white border-none  btn-primary ">View Profile</button>
+        
+        </Link> 
+       </div>
+        <li>
+        <Link >My Services</Link>
+        </li>
+        <li><Link to='/dashboard'>Dashboard</Link></li>
+        <li><Link onClick={logOut} className="text-primary" >Logout</Link></li>
+      </ul>
+    </div>
+
+           
             </>
             :
             <> 	
