@@ -5,14 +5,9 @@ import useAuth from "../../Components/Hooks/useAuth";
 import { updateProfile } from "firebase/auth";
 import toast from "react-hot-toast";
 
-
-
-
-
 const Register = () => {
-
-    const {createUser,user}= useAuth()
-    const navigate = useNavigate()
+  const { createUser, user } = useAuth();
+  const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -33,76 +28,72 @@ const Register = () => {
     // console.log(userInfo);
 
     if (password.length < 6) {
-    toast.error('password must be six digit')
+      toast.error("password must be six digit");
       return;
     } else if (!/[A-Z]/.test(password)) {
-     toast.error("Your password must need one Capital Letter")
+      toast.error("Your password must need one Capital Letter");
       return;
     } else if (
       !/(?=(.*[0-9]))(?=.*[\!@#$%^&*()\\[\]{}\-_+=~`|:;"'<>,./?])(?=.*[a-z])(?=(.*[A-Z]))(?=(.*)).{6,}/.test(
         password
       )
     ) {
-      toast.error("Your password must need one special character!")
+      toast.error("Your password must need one special character!");
       return;
     }
-const toastId = toast.loading('Creating user...')
-const toastIdUpdate = toast.loading('Updating user...')
-   try{
-  const userInfo=  await createUser(email, password)
-    toast.success('User Created',{id:toastId})
+    const toastId = toast.loading("Creating user...");
+    const toastIdUpdate = toast.loading("Updating user...");
+    try {
+      const userInfo = await createUser(email, password);
+      toast.success("User Created", { id: toastId });
 
-   
-        await updateProfile(userInfo.user,{
-            displayName: full_name,
-            photoURL: photoURL,
-          }  )
-          toast.success("User Data Updated",{id:toastIdUpdate})
-          navigate('/')
+      await updateProfile(userInfo.user, {
+        displayName: full_name,
+        photoURL: photoURL,
+      });
+      toast.success("User Data Updated", { id: toastIdUpdate });
+      navigate("/");
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message, { id: toastId });
+    }
+  };
 
-    
-        
+  //     //user data send database
 
-   } catch(err){
-    console.log(err);
-    toast.error(err.message,{id:toastId})
-   }
-    
-   
-   
-    
-   
-        
-  }
-    
-      
+  //         if (data.insertedId) {
+  //           Swal.fire({
+  //             position: "center",
+  //             icon: "success",
+  //             title: "Data Update Successfully!",
+  //             showConfirmButton: false,
+  //             timer: 1500,
+  //           });
 
-//     //user data send database
- 
-//         if (data.insertedId) {
-//           Swal.fire({
-//             position: "center",
-//             icon: "success",
-//             title: "Data Update Successfully!",
-//             showConfirmButton: false,
-//             timer: 1500,
-//           });
-      
-//   }
-  
-  
+  //   }
+
   return (
-    <div className="container px-6 mx-auto">
-   <nav className="flex flex-col py-auto pt-6 sm:flex-row sm:justify-between sm:items-center">
-            <Link to='/'>
-                <LogoText/>
-            </Link>
+    <div className="container  mx-auto">
+      <nav className="flex flex-col py-auto pt-6 sm:flex-row sm:justify-between sm:items-center">
+        <Link to="/">
+          <LogoText />
+        </Link>
 
-            <div className="flex items-center mt-2 -mx-2 sm:mt-0">
-                <Link to='/login' className="px-3 py-1 hover:bg-primary text-sm font-semibold text-white transition-colors duration-300 transform border-2 rounded-md">Sign In</Link>
-                <Link to='/signup' className=" ml-4 transition-colors duration-300 transform bg-black rounded-md hover:bg-gray-800"><SignUpBtn/></Link>
-            </div>
-        </nav>
+        <div className="flex items-center mt-2 -mx-2 sm:mt-0">
+          <Link
+            to="/login"
+            className="px-3 py-1 hover:bg-primary text-sm font-semibold text-white transition-colors duration-300 transform border-2 rounded-md"
+          >
+            Sign In
+          </Link>
+          <Link
+            to="/signup"
+            className=" ml-4 transition-colors duration-300 transform bg-black rounded-md hover:bg-gray-800"
+          >
+            <SignUpBtn />
+          </Link>
+        </div>
+      </nav>
 
       <section className=" dark:bg-gray-900">
         <div className="flex items-center justify-center min-h-[85vh]">
@@ -155,10 +146,6 @@ const toastIdUpdate = toast.loading('Updating user...')
                   />
                 </div>
 
-          
-
-             
-              
                 <div>
                   <label className="block mb-2 text-sm text-gray-600 dark:text-gray-200">
                     Email address
@@ -184,8 +171,6 @@ const toastIdUpdate = toast.loading('Updating user...')
                     className="block w-full px-5 py-3 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                   />
                 </div>
-
-             
 
                 <button className="flex items-center justify-between w-full px-6 py-3 text-sm tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                   <input type="submit" value="Sign Up" />

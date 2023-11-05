@@ -1,13 +1,11 @@
-import Banner from "./Banner";
-
+import VideoBanner from "./VideoBanner";
 
 const Home = () => {
-    return (
-        <div>
-          <Banner/>
-          
-        </div>
-    );
+  return (
+    <div>
+      <VideoBanner />
+    </div>
+  );
 };
 
 export default Home;
