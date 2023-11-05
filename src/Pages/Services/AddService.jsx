@@ -1,11 +1,49 @@
 import Slider from "../Home/Slider";
 import useAuth from "./../../Components/Hooks/useAuth";
 
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
+import { toast } from "react-hot-toast";
+
 const AddService = () => {
   const { user } = useAuth();
+  const axios = useAxiosSecure();
 
   const userName = user?.displayName;
   const email = user?.email;
+
+  const handleAddNewService = async (e) => {
+    e.preventDefault();
+    const form = e.target;
+
+    const image = form.image.value;
+    const serviceName = form.serviceName.value;
+    const serviceProviderName = userName;
+    const serviceProviderEmail = email;
+    const price = form.price.value;
+    const serviceArea = form.serviceArea.value;
+    const description = form.description.value;
+
+    const serviceInfo = {
+      image: image,
+      serviceName: serviceName,
+      serviceProviderName: serviceProviderName,
+      serviceProviderEmail: serviceProviderEmail,
+      price: price,
+      serviceArea: serviceArea,
+      description: description,
+    };
+    console.log(serviceInfo);
+
+    await axios
+      .post("/services", serviceInfo)
+      .then((res) => {
+        toast.success("Add Service Successfully");
+
+        console.log(res);
+      })
+      .catch((err) => console.log(err));
+  };
+
   return (
     <div className="relative top-20 container flex mx-auto  ">
       <div className="hero-content md:w-1/2">
@@ -15,7 +53,7 @@ const AddService = () => {
       <div className="md:w-1/2 my-auto mx-10">
         <h2 className="mb-16 text-3xl">Add New Printing Service</h2>
 
-        <form>
+        <form onSubmit={handleAddNewService}>
           <div className="relative z-0 w-full mb-6 group">
             <input
               type="text"
