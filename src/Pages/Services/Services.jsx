@@ -2,15 +2,19 @@ import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import Slider from "../Home/Slider";
 import { useQuery } from "@tanstack/react-query";
 import ServiceCard from "./ServiceCard";
+import Btn from "../../Components/sharedComponents/Button/Btn";
 
 const Services = () => {
   const axios = useAxiosSecure();
+  const view="Show More";
 
   const getServiceData = async () => {
     const res = await axios.get("/services");
     console.log(res);
     return res;
   };
+
+
 
   const {
     data: services,
@@ -31,15 +35,16 @@ const Services = () => {
 
   console.log(services.data);
   const serviceData = services.data;
+  const serviceLength = serviceData.length;
 
   return (
     <div className="relative top-20 container mx-auto">
-      <div className="grid md:grid-cols-2 gap-20">
+      <div className="grid grid-cols-1 gap-10">
         {serviceData.map((service) => (
           <ServiceCard key={service._id} service={service} />
         ))}
       </div>
-      <Slider></Slider>
+    <span className="flex justify-center"> <Btn view={view} /></span>
     </div>
   );
 };

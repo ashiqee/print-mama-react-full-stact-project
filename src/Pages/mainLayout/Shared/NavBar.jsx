@@ -60,6 +60,7 @@ const NavBar = () => {
         {" "}
         <li>
           <NavLink
+          to={`/myServices/${user?.email}`}
             className={({ isActive }) =>
               isActive
                 ? "text-secondary-focus font-bold border-b-2"

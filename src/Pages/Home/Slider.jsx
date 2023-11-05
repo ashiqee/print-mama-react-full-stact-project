@@ -27,7 +27,7 @@ const Slider = () => {
       <SwiperSlide>
         {" "}
         <img
-          className="rounded-xl"
+          className="rounded-xl w-10/12"
           src="https://wdtprintme.wpengine.com/wp-content/uploads/2023/09/Home-1-Banner.png"
           alt=""
         />
@@ -35,7 +35,7 @@ const Slider = () => {
       <SwiperSlide>
         {" "}
         <img
-          className="rounded-xl"
+          className="rounded-xl w-10/12"
           src="https://wdtprintme.wpengine.com/wp-content/uploads/2023/10/Home-1-Banner-3.png"
           alt=""
         />
@@ -44,7 +44,7 @@ const Slider = () => {
       <SwiperSlide>
         {" "}
         <img
-          className="rounded-xl"
+          className="rounded-xl w-10/12"
           src="https://wdtprintme.wpengine.com/wp-content/uploads/2023/09/Home-3-Slider-1-Tshirt.gif"
           alt=""
         />
