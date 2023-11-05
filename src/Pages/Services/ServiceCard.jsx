@@ -38,7 +38,7 @@ const ServiceCard = ({ service }) => {
                 <h2>Price: {price} BDT</h2>
                 <h2>Service Area: {serviceArea} </h2>
                
-                <span><Link to={`/serviceDetails/${_id}`} > <Btn view={viewDetails} /></Link></span>
+                <span><Link to={`/serviceDetails`} > <Btn view={viewDetails} /></Link></span>
                 </div>
                 </div>
             </div>

@@ -35,12 +35,12 @@ const Services = () => {
 
   console.log(services.data);
   const serviceData = services.data;
-  const serviceLength = serviceData.length;
+  // const serviceLength = serviceData?.length;
 
   return (
     <div className="relative top-20 container mx-auto">
       <div className="grid grid-cols-1 gap-10">
-        {serviceData.map((service) => (
+        {serviceData?.map((service) => (
           <ServiceCard key={service._id} service={service} />
         ))}
       </div>

@@ -11,6 +11,7 @@ import ServiceDetails from "../Pages/Services/ServiceDetails";
 import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import MyServices from "../Pages/Services/MyServices/MyServices";
+import PrivateRoute from "./PrivateRoute";
 
 
   const router = createBrowserRouter([
@@ -36,8 +37,10 @@ import MyServices from "../Pages/Services/MyServices/MyServices";
             element:<AddService/>
 
         },{
-          path:'/myServices/:email',
-          element:<MyServices/>
+          path:'/myServices',
+          element:<PrivateRoute>
+                 <MyServices/>
+              </PrivateRoute>,
         }
     
     ]

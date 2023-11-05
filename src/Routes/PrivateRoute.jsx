@@ -1,11 +1,19 @@
+import { Navigate } from "react-router-dom";
+import useAuth from "../Components/Hooks/useAuth";
 
 
-const PrivateRoute = () => {
-    return (
-        <div>
-            
-        </div>
-    );
-};
+const PrivateRoute = ({children}) => {
 
+    const {loading,user}=useAuth()
+
+    if(loading){
+       
+        return <progress className="progress progress-error w-56 text-center my-auto" ></progress>;
+    }
+
+    if(!loading && !user?.email){
+        return <Navigate to='/login'/>
+    }
+    return children;
+}
 export default PrivateRoute;

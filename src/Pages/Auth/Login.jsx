@@ -1,14 +1,18 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import "./login.css";
 import LogoText from "../../Components/sharedComponents/LogoText";
 import SignUpBtn from "../../Components/sharedComponents/Button/SignUpBtn";
 import { FcGoogle } from "react-icons/Fc";
 import useAuth from "../../Components/Hooks/useAuth";
 import toast from "react-hot-toast";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
+
 
 const Login = () => {
-  const { signInUser, googleLogin } = useAuth();
+  const { signInUser, googleLogin} = useAuth();
   const navigate = useNavigate();
+  const location = useLocation()
+  const axios = useAxiosSecure()
 
   const handleSingIn = async (e) => {
     e.preventDefault();
@@ -21,7 +25,20 @@ const Login = () => {
     try {
       await signInUser(email, password);
       toast.success("SingIn Successfully");
-      navigate("/");
+//get access token
+
+
+        axios.post('/jwt',{email})
+        .then(res=>{
+          // console.log(res.data);
+          if(res.data.success){
+            navigate(location?.state ? location?.state : '/')
+          }
+        })
+        .catch(err=>console.error(err))
+
+
+    
     } catch (err) {
       toast.error("invalid User", err.message);
     }
