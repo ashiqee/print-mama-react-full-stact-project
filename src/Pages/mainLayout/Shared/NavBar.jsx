@@ -136,7 +136,9 @@ const NavBar = () => {
           </div>
           <div className="flex   items-center">
             <h2 className="font-bold mr-5">
-              <LogoText />
+              <Link to="/">
+                <LogoText />
+              </Link>
             </h2>
           </div>
           <div className="items-center flex-shrink-0 lg:hidden gap-5 flex">
