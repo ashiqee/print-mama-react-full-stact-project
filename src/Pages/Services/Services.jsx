@@ -1,9 +1,44 @@
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import Slider from "../Home/Slider";
+import { useQuery } from "@tanstack/react-query";
+import ServiceCard from "./ServiceCard";
 
 const Services = () => {
+  const axios = useAxiosSecure();
+
+  const getServiceData = async () => {
+    const res = await axios.get("/services");
+    console.log(res);
+    return res;
+  };
+
+  const {
+    data: services,
+    isLoading,
+    isError,
+    error,
+  } = useQuery({
+    queryKey: ["services"],
+    queryFn: getServiceData,
+  });
+
+  if (isLoading) {
+    return <span className="loading loading-spinner text-secondary"></span>;
+  }
+  if (isError) {
+    return <p>Failed Load: {error}</p>;
+  }
+
+  console.log(services.data);
+  const serviceData = services.data;
+
   return (
     <div className="relative top-20 container mx-auto">
-      Services
+      <div className="grid md:grid-cols-2 gap-20">
+        {serviceData.map((service) => (
+          <ServiceCard key={service._id} service={service} />
+        ))}
+      </div>
       <Slider></Slider>
     </div>
   );

@@ -10,6 +10,7 @@ const AddService = () => {
 
   const userName = user?.displayName;
   const email = user?.email;
+  const userProfile = user?.photoURL;
 
   const handleAddNewService = async (e) => {
     e.preventDefault();
@@ -27,30 +28,32 @@ const AddService = () => {
       image: image,
       serviceName: serviceName,
       serviceProviderName: serviceProviderName,
+      serviceProviderPhoto: userProfile,
       serviceProviderEmail: serviceProviderEmail,
       price: price,
       serviceArea: serviceArea,
       description: description,
     };
-    console.log(serviceInfo);
 
+    // service post in db
     await axios
       .post("/services", serviceInfo)
       .then((res) => {
         toast.success("Add Service Successfully");
-
         console.log(res);
       })
       .catch((err) => console.log(err));
+
+    form.reset();
   };
 
   return (
-    <div className="relative top-20 container flex mx-auto  ">
-      <div className="hero-content md:w-1/2">
+    <div className="relative top-20 container lg:flex   mx-auto  ">
+      <div className=" md:w-1/2">
         <Slider />
       </div>
 
-      <div className="md:w-1/2 my-auto mx-10">
+      <div className="md:w-1/2 my-10  md:my-auto mx-10">
         <h2 className="mb-16 text-3xl">Add New Printing Service</h2>
 
         <form onSubmit={handleAddNewService}>
