@@ -3,20 +3,29 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../Components/Hooks/useAxiosSecure";
 
+
+import toast from "react-hot-toast";
+
 const UpdateService = () => {
   const axiosSecure = useAxiosSecure();
+  
   const { id } = useParams();
+  
 
   const { data: service } = useQuery({
     queryKey: ["update"],
     queryFn: async () => {
       const res = await axiosSecure.get(`/updateService/${id}`);
+      console.log(res);
+     
       return res;
     },
   });
 
   const serviceData = service?.data;
-  console.log(serviceData);
+  
+  // console.log(serviceData);
+
   const handleUpdateService = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -27,21 +36,38 @@ const UpdateService = () => {
       price: form.price.value,
       description: form.description.value,
     };
+    
+    fetch(`http://localhost:5000/api/mama/update/${id}`,{
+      method:'PATCH',
+      headers:{
+        'content-type':'application/json'
+      },
+      body: JSON.stringify(updatedService)
 
-    console.log(updatedService);
+    }).then((res)=>res.json())
+    .then(data=>{console.log(data)
+    
+    if(data.modifiedCount > 0){
+      const toastId = toast.loading("Updating data...");
+      toast.success("Data Updating Done", { id: toastId });
+      
+     
+    }})
+   
+    // console.log(updatedService);
   };
 
   return (
     <div className="relative top-40 container lg:flex my-auto  mx-auto  ">
-      <div className=" md:w-1/2 md:flex">
+      <div className=" md:w-1/2 lg:flex">
         <div className="text-lg space-y-5 mx-14 md:mx-0 mb-2">
-          <h2 className="text-2xl text-secondary">{serviceData.serviceName}</h2>
-          <h2>Price: {serviceData.price} BDT</h2>
-          <h2>Service Area: {serviceData.serviceArea}</h2>
+          <h2 className="text-2xl text-secondary">{serviceData?.serviceName}</h2>
+          <h2>Price: {serviceData?.price} BDT</h2>
+          <h2>Service Area: {serviceData?.serviceArea}</h2>
         </div>
         <img
-          className="w-96 rounded-xl mx-auto"
-          src={serviceData.image}
+          className="md:w-1/2 w-96 rounded-xl mx-auto"
+          src={serviceData?.image}
           alt=""
         />
       </div>
@@ -67,7 +93,7 @@ const UpdateService = () => {
             <input
               type="text"
               name="serviceName"
-              defaultValue={serviceData.serviceName}
+              defaultValue={serviceData?.serviceName}
               className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required
@@ -82,7 +108,7 @@ const UpdateService = () => {
               <input
                 type="text"
                 name="price"
-                defaultValue={serviceData.price}
+                defaultValue={serviceData?.price}
                 className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
@@ -95,7 +121,7 @@ const UpdateService = () => {
               <input
                 type="text"
                 name="serviceArea"
-                defaultValue={serviceData.serviceArea}
+                defaultValue={serviceData?.serviceArea}
                 className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                 placeholder=" "
                 required
@@ -109,7 +135,7 @@ const UpdateService = () => {
             <textarea
               type="text"
               name="description"
-              defaultValue={serviceData.description}
+              defaultValue={serviceData?.description}
               className="block py-2.5 px-0 w-full textarea textarea-bordered  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
               placeholder=" "
               required

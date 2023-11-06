@@ -51,7 +51,7 @@ const MyServiceTableSM = ({
           </button>
 
           <Link
-            to="/updateService"
+            to={`/updateService/${_id}`}
             className="text-gray-200 transition-colors
             duration-200 dark:hover:text-yellow-200 dark:text-gray-300
             hover:text-yellow-200 focus:outline-none"

@@ -78,7 +78,7 @@ const Login = () => {
         </nav>
 
         <div className="flex flex-col items-center py-0 lg:h-[32rem] lg:flex-row">
-          <div className="lg:w-1/2  lg:block">
+          <div className="lg:w-1/2 hidden md:block lg:block">
             <img
               src="https://i.ibb.co/4Kmbyf4/Humaaans-3-Characters.png"
               alt="Humaaans-3-Characters"

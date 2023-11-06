@@ -84,6 +84,7 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink
+          to='/mySchedules'
             className={({ isActive }) =>
               isActive
                 ? "text-secondary-focus font-bold border-b-2"

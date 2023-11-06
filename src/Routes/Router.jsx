@@ -8,7 +8,8 @@ import Login from "../Pages/Auth/Login";
 import Register from "../Pages/Auth/Register";
 import MyServices from "../Pages/Services/MyServices/MyServices";
 import PrivateRoute from "./PrivateRoute";
-import UpdateService from "../Pages/Services/MyServices/Updateservice";
+import UpdateService from "../Pages/Services/MyServices/UpdateService";
+import MySchedules from "../Pages/MySchedules/MySchedules";
 
 const router = createBrowserRouter([
   {
@@ -55,6 +56,12 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
+      {
+        path:'/mySchedules',
+        element:<PrivateRoute>
+          <MySchedules/>
+        </PrivateRoute>
+      }
     ],
   },
   {
