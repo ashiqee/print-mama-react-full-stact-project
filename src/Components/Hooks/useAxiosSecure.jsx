@@ -1,32 +1,39 @@
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { AuthContext } from "../Providers/AuthProvider";
 
-const axiosSecure = axios.create({
+export const axiosSecure = axios.create({
   baseURL: "http://localhost:5000/api/mama",
   withCredentials: true,
 });
 
 const useAxiosSecure = () => {
-    // const { logOut } = useAuth();
-    // const navigate = useNavigate();
+  const logOut = useAuth();
 
+  // console.log(logOut);
+  // const navigate = useNavigate();
 
-// useEffect(()=>{
-//   axiosSecure.interceptors.response.use(res=>{
-//     return res;
-//   },(err)=>{
-//     console.log('error tracked',err.response);
-//     if(err.response.status ===401 || err.response.status === 403){
-//       console.log('logOut User');
-//       logOut()
-//       .then(()=>{
-//         navigate('/login')
-//       })
-//     }
-//   })
-// },[])
+  useEffect(() => {
+    axiosSecure.interceptors.response.use(
+      (res) => {
+        // console.log(res);
+
+        return res;
+      },
+      (error) => {
+        console.log("error tracked", error.response);
+        if (error.response.status === 401 || error.response.status === 403) {
+          console.log("logOut User");
+          logOut().then(() => {
+            <Navigate to="/login" />;
+          });
+        }
+      }
+    );
+  }, []);
 
   return axiosSecure;
 };

@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import MyServiceTable from "./MyServiceTable";
 import { useState } from "react";
 import MyServiceTableSM from "./MyServiceTableSM";
+import { toast } from "react-hot-toast";
 
 const MyServices = () => {
   const { user } = useAuth();
@@ -38,6 +39,23 @@ const MyServices = () => {
   if (isError) {
     return <p>Failed Load: {error}</p>;
   }
+
+  const handleUpdateService = (id) => {
+    alert("click in update", id);
+    console.log(id);
+  };
+
+  const handleDeleteService = (id) => {
+    axios.delete(`/delete/${id}`).then((res) => {
+      console.log(res.data);
+      if (res.data.deletedCount > 0) {
+        toast.dismiss("Delete Success fully");
+        const remaining = serviceData.filter((service) => service._id !== id);
+        setServiceData(remaining);
+      }
+    });
+    console.log("delete click");
+  };
 
   return (
     <div className="relative top-20  container mx-auto ">
@@ -118,7 +136,12 @@ const MyServices = () => {
                     </thead>
                     <tbody className="bg-base-200 text-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
                       {serviceData?.map((service) => (
-                        <MyServiceTable key={service._id} service={service} />
+                        <MyServiceTable
+                          key={service._id}
+                          service={service}
+                          handleUpdateService={handleUpdateService}
+                          handleDeleteService={handleDeleteService}
+                        />
                       ))}
                     </tbody>
                   </table>
@@ -153,7 +176,13 @@ const MyServices = () => {
             </thead>
             <tbody className="bg-base-200 text-white divide-y divide-gray-200">
               {serviceData?.map((service, i) => (
-                <MyServiceTableSM key={service.i} service={service} i={i} />
+                <MyServiceTableSM
+                  key={service._id}
+                  service={service}
+                  i={i}
+                  handleUpdateService={handleUpdateService}
+                  handleDeleteService={handleDeleteService}
+                />
               ))}
             </tbody>
           </table>

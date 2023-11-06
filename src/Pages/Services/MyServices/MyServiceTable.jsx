@@ -1,4 +1,8 @@
-const MyServiceTable = ({ service }) => {
+const MyServiceTable = ({
+  service,
+  handleUpdateService,
+  handleDeleteService,
+}) => {
   const {
     image,
     serviceName,
@@ -51,7 +55,10 @@ const MyServiceTable = ({ service }) => {
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-6">
-          <button className="text-gray-200 transition-colors duration-200 dark:hover:text-red-200 dark:text-gray-300 hover:text-red-200 focus:outline-none">
+          <button
+            onClick={() => handleDeleteService(_id)}
+            className="text-gray-200 transition-colors duration-200 dark:hover:text-red-200 dark:text-gray-300 hover:text-red-200 focus:outline-none"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -63,7 +70,10 @@ const MyServiceTable = ({ service }) => {
             </svg>
           </button>
 
-          <button className="text-gray-200 transition-colors duration-200 dark:hover:text-yellow-200 dark:text-gray-300 hover:text-yellow-200 focus:outline-none">
+          <button
+            onClick={() => handleUpdateService(_id)}
+            className="text-gray-200 transition-colors duration-200 dark:hover:text-yellow-200 dark:text-gray-300 hover:text-yellow-200 focus:outline-none"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
