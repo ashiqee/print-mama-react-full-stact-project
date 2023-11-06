@@ -2,12 +2,16 @@ import { useQuery } from "@tanstack/react-query";
 import { Link, useParams } from "react-router-dom";
 import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import ServiceProviderCard from "../../Components/sharedComponents/Button/Card/ServiceProviderCard";
+import Btn from "../../Components/sharedComponents/Button/Btn";
+import useAuth from "../../Components/Hooks/useAuth";
 
 
 const ServiceDetails = () => {
   const axiosSecure = useAxiosSecure();
   const {id} = useParams()
-
+  const {user}=useAuth()
+const view ="Book Now"
+const view2 ="Close"
   
 
   const { data: service } = useQuery({
@@ -22,6 +26,34 @@ const ServiceDetails = () => {
 
   const serviceData = service?.data;
   console.log(serviceData);
+
+
+  const handleBookingService=(e)=>{
+    e.preventDefault()
+
+    const form =e.target;
+
+    const bookedServiceData = {
+
+      serviceName : form.name.value,
+      serviceImage: serviceData?.image,
+      servicePrice: form.price.value,
+      providerEmail: form.providerEmail.value,
+      userEmail:form.userEmail.value,
+      serviceTakingDate: form.serviceTakingDate.value,
+      serviceArea: form.serviceTakingArea.value,
+      address: form.address.value,
+      serviceStatus:"Pending",
+
+
+
+
+    }
+
+    console.log(bookedServiceData);
+
+    
+  }
 
   return (
     <div>
@@ -57,16 +89,166 @@ const ServiceDetails = () => {
 
 <div className="grid w-full bg-cover bg-center min-h-[450px]" style={{backgroundImage: `url(${serviceData?.image})`}}>
   <div className="hero-overlay bg-opacity-60">
-<div className="container grid md:grid-cols-2 pt-20 mx-auto">
+<div className="container  grid md:grid-cols-2 pt-20 mx-auto">
   {/* service info  */}
 <div className="space-y-3 ">
 <h2 className="text-4xl text-secondary font-bold" >{serviceData?.serviceName}</h2>
 <h2 className="text-2xl font-bold" >Price: {serviceData?.price} BDT</h2>
+<div className="max-w-md">
+  <label className="text-lg font-bold" >Description</label>
+<p className="text-sm font-md" > {serviceData?.description} BDT</p>
+</div>
 
+
+
+
+{/* You can open the modal using document.getElementById('ID').showModal() method */}
+<button  onClick={()=>document.getElementById('my_modal_4').showModal()}><Btn view={view}  /></button>
+<dialog id="my_modal_4" className="modal">
+  <div className="modal-box w-11/12 max-w-2xl">
+  <form onSubmit={handleBookingService}>
+          <div className="relative z-0 w-full object-cover mb-6 flex justify-between group">
+            
+         <img className="w-48 hover:-rotate-12 hover:relative hover:left-50 hover:animate-0 transition-colors  rounded-3xl" src={serviceData?.image} alt="" />
+
+         <div>
+         <ServiceProviderCard service={serviceData}/>
+         <h2 className="text-md font-bold" >Name: {serviceData?.serviceProviderName}</h2>
+         </div>
+  </div>
+
+           
+    
+
+          <div className="grid md:grid-cols-2 md:gap-10">
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                name="name"
+                readOnly
+                defaultValue={serviceData?.serviceName}
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Service Name
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                name="price"
+                readOnly
+                defaultValue={serviceData?.price}
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+               Price
+              </label>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 md:gap-6">
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                readOnly
+                name="providerEmail"
+                defaultValue={serviceData?.serviceProviderEmail}
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Service Provider Email
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                name="userEmail"
+                readOnly
+                defaultValue={user?.email}
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+               Your Email
+              </label>
+            </div>
+          </div>
+          <div className="grid md:grid-cols-2 md:gap-6">
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="date"
+                
+                name="serviceTakingDate"
+                
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+                Service Taking Date
+              </label>
+            </div>
+            <div className="relative z-0 w-full mb-6 group">
+              <input
+                type="text"
+                name="serviceTakingArea"
+                
+                defaultValue={serviceData?.serviceArea}
+                className="block py-2.5 px-0 w-full text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+                placeholder=" "
+                required
+              />
+              <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+              Service Area
+              </label>
+            </div>
+          </div>
+          <div className="relative z-0 w-full mb-6 group">
+            <textarea
+              type="text"
+              name="address"
+             
+              className="block py-2.5 px-0 w-full textarea textarea-bordered  text-sm  bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+              placeholder=" "
+              required
+            />
+            <label className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6">
+             Full Address Details
+            </label>
+          </div>
+        <div className="flex items-center justify-between">
+        <input
+            type="submit"
+            className="btn btn-secondary"
+            value="Purchase This Service"
+          />
+           <div className="modal-action mt-0  w-16">
+      <form method="dialog">
+      
+      
+
+
+
+       <span> <Btn  view={view2}/></span>
+      </form>
+    </div>
+        </div>
+          
+        </form>
+    
+  </div>
+</dialog>
 
 </div>
 {/* provider information */}
-<div>
+<div className="mt-10 md:mt-0">
   <h2 className="text-2xl border-b-2">Provider Information </h2>
 <div className="flex mt-10 gap-10">
 <ServiceProviderCard service={serviceData}/> 

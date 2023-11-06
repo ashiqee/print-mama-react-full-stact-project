@@ -2,13 +2,7 @@
 // }
 const ServiceProviderCard = ({service}) => {
    
-    const {
-       image,
-        serviceName,
-        serviceProviderPhoto,
-        serviceProviderName,
-       
-      } = service;
+  
       
  
     return (
@@ -22,7 +16,7 @@ const ServiceProviderCard = ({service}) => {
          border-neutral-900  font-light text-slate-300'>
           <div className='duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#17225e] to-[#f2f0ff] opacity-0 blur transition group-hover:opacity-75' />
           <span className='text-md bg-gradient-to-t from-neutral-400 to-white bg-clip-text font-bold text-transparent'>
-          <img className="w-full rounded-lg" src={serviceProviderPhoto} alt="" />
+          <img className="w-full rounded-lg" src={service?.serviceProviderPhoto} alt="" />
           </span>
          
         </div>
