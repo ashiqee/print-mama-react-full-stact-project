@@ -2,8 +2,6 @@ import axios from "axios";
 import { Navigate } from "react-router-dom";
 import useAuth from "./useAuth";
 import { useEffect } from "react";
-import { useContext } from "react";
-import { AuthContext } from "../Providers/AuthProvider";
 
 export const axiosSecure = axios.create({
   baseURL: "http://localhost:5000/api/mama",

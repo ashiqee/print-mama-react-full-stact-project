@@ -40,11 +40,6 @@ const MyServices = () => {
     return <p>Failed Load: {error}</p>;
   }
 
-  const handleUpdateService = (id) => {
-    alert("click in update", id);
-    console.log(id);
-  };
-
   const handleDeleteService = (id) => {
     axios.delete(`/delete/${id}`).then((res) => {
       console.log(res.data);
@@ -139,7 +134,6 @@ const MyServices = () => {
                         <MyServiceTable
                           key={service._id}
                           service={service}
-                          handleUpdateService={handleUpdateService}
                           handleDeleteService={handleDeleteService}
                         />
                       ))}
@@ -180,7 +174,6 @@ const MyServices = () => {
                   key={service._id}
                   service={service}
                   i={i}
-                  handleUpdateService={handleUpdateService}
                   handleDeleteService={handleDeleteService}
                 />
               ))}
