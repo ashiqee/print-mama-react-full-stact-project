@@ -4,6 +4,7 @@ import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import ServiceProviderCard from "../../Components/sharedComponents/Button/Card/ServiceProviderCard";
 import Btn from "../../Components/sharedComponents/Button/Btn";
 import useAuth from "../../Components/Hooks/useAuth";
+import toast from "react-hot-toast";
 
 
 const ServiceDetails = () => {
@@ -44,13 +45,18 @@ const view2 ="Close"
       serviceArea: form.serviceTakingArea.value,
       address: form.address.value,
       serviceStatus:"Pending",
-
-
-
-
     }
 
-    console.log(bookedServiceData);
+    // console.log(bookedServiceData);
+    const toastId = toast.loading("Product Purchase Pending...");
+    // post booking service in db 
+    axiosSecure.post('/booking',bookedServiceData)
+    .then(res=>{
+      console.log(res.data);
+      if(res.data.insertedId){
+        toast.success("Product Purchase SuccessFully",{ id: toastId })
+      }
+    })
 
     
   }
