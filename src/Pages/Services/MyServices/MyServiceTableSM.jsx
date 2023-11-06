@@ -1,4 +1,6 @@
-const MyServiceTable = ({ service }) => {
+import { Link } from "react-router-dom";
+
+const MyServiceTableSM = ({ service, i }) => {
   const {
     image,
     serviceName,
@@ -9,45 +11,22 @@ const MyServiceTable = ({ service }) => {
     description,
     serviceProviderEmail,
   } = service;
-
   return (
     <tr>
-      <td className="px-4 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-        <div className="inline-flex items-center gap-x-3">
-          <div className="flex items-center gap-x-2">
-            <img
-              className="object-cover w-24 h-24 rounded-lg"
-              src={image}
-              alt=""
-            />
-            <div>
-              <h2 className="font-medium text-lg text-white dark:text-white ">
-                {serviceName}
-              </h2>
-              <p className="text-md font-normal text-gray-200 dark:text-gray-400">
-                {price} BDT
-              </p>
-            </div>
-          </div>
+      <td className="px-2 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+        {+i}
+      </td>
+      <td className="px-2 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 whitespace-nowrap">
+        <img className="w-24 h-24 mx-auto mb-1 rounded-lg" src={image} alt="" />
+      </td>
+      <td className="px-2   gap-2 py-2 text-md font-medium text-gray-200 dark:text-gray-200 whitespace-nowrap">
+        <div className="space-y-2">
+          <h3>{serviceName}</h3>
+          <h3>{price} BDT</h3>
         </div>
       </td>
-      <td className="px-12 py-4 text-sm font-medium text-gray-700 whitespace-nowrap">
-        <div className="inline-flex items-center px-3 py-1 rounded-full gap-x-2 bg-emerald-100/60 dark:bg-gray-800">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-200"></span>
-
-          <h2 className="text-sm font-normal text-emerald-400">Active</h2>
-        </div>
-      </td>
-      <td className="px-4 py-4 text-sm text-gray-200 dark:text-gray-300 whitespace-nowrap">
-        {serviceArea}
-      </td>
-      <td className="px-4 py-4 text-sm text-gray-200 dark:text-gray-300 whitespace-nowrap">
-        {serviceProviderEmail}
-      </td>
-      <td className="px-4 py-4 text-sm whitespace-nowrap">
-        <div className="flex items-center gap-x-2">
-          <p className="text-gray-200">{description.slice(0, 30)}</p>
-        </div>
+      <td className="px-1  py-1 text-sm font-medium text-gray-200 dark:text-gray-200 whitespace-nowrap">
+        <h4>{serviceArea}</h4>
       </td>
       <td className="px-4 py-4 text-sm whitespace-nowrap">
         <div className="flex items-center gap-x-6">
@@ -80,4 +59,4 @@ const MyServiceTable = ({ service }) => {
   );
 };
 
-export default MyServiceTable;
+export default MyServiceTableSM;
