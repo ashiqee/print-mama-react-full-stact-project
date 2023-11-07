@@ -15,10 +15,10 @@ const ServiceCard = ({ service }) => {
     description,
   } = service;
   return (
-    <div>
+  <div>
  
 
-    <div className="container animate-background- bg-[linear-gradient(20deg,#E77951,4%,#1e2631,95%,#000103)] 
+   <div className="container animate-background- bg-[linear-gradient(20deg,#E77951,4%,#1e2631,95%,#000103)] 
     bg-[length:200%_100%]  border-primary bg-primary 
     bg-opacity-10 shadow-2xl  rounded-xl border flex flex-col px-6 py-10 mx-auto space-y-6 lg:h-[32rem] lg:py-16 lg:flex-row lg:items-center">
         <div className="w-full lg:w-1/2">

@@ -46,7 +46,7 @@ const MyBooking = () => {
   console.log(myBookingData);
   const view = "My Booking Page";
   return (
-    <div className=" container w-[85vw]  ">
+    <div className=" container lg:w-[85vw]  ">
       <DashboardHeader view={view} />
       {/* <my booking section  */}
       {!myBookingData.length ? (
@@ -64,8 +64,9 @@ const MyBooking = () => {
                   role="list"
                   className="divide-y divide-base-200 dark:divide-gray-700"
                 >
-                  <div>
-                    <ul className="flex text-black font-semibold text-xl space-x-6 lg:space-x-56">
+                  {/* for table resposive issue  hidden */}
+                  <div> 
+                    <ul className=" hidden text-black font-semibold text-xl  ">
                       <li>Image</li>
                       <li>Service Info</li>
                       <li> Date</li>
@@ -73,7 +74,7 @@ const MyBooking = () => {
                       <li>Status</li>
                     </ul>
                   </div>{" "}
-                  <div className="grid grid-cols-1 gap-5">
+                  <div className="grid grid-cols-1 gap-2">
                     {myBookingData?.map((myBooked) => (
                       <MyBookingTable key={myBooked._id} myBooked={myBooked} />
                     ))}

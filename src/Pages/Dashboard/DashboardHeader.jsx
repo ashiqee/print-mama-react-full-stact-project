@@ -1,7 +1,7 @@
 const DashboardHeader = ({ view }) => {
   return (
     <div>
-      <div className="  w-[85vw]  mx-auto">
+      <div className="  ">
         <div
           className="hero min-h-[12vh]"
           style={{

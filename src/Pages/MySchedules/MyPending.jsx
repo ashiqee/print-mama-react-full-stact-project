@@ -1,27 +1,106 @@
+
+import useAuth from "../../Components/Hooks/useAuth";
+import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
+import MyPendingWorkCard from "./MyPendingWorkCard";
+import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+
 const MyPending = () => {
+ const axiosSecure=useAxiosSecure()
+ const {user}= useAuth()
+ const [pendingServices,setPendingService]= useState([])
+const url = `/pendingService?email=${user?.email}`
+
+ useEffect(()=>{
+  axiosSecure.get(url)
+  .then((res)=> setPendingService(res.data))
+ 
+ },[axiosSecure,url, setPendingService])
+
+   
+     
+
+ 
+
+
+
+  // if (isLoading) {
+  //   return (
+  //     <span className="loading my-auto mx-auto text-4xl loading-lg loading-spinner  text-secondary"></span>
+  //   );
+  // }
+
+  // if (isError) {
+  //   return <p>Failed Load: {error}</p>;
+  // }
+
+  
+
+
+const handleStatus=(status,id)=>{
+const statusUpdate = [];
+  if(status === "Pending" ){
+ statusUpdate.push('In Progress')
+   
+  }else if(status === "In Progress"){
+    statusUpdate.push('Completed')
+  }else{
+   return 
+  }
+
+ const serviceStatus =statusUpdate[0];
+
+  fetch(`http://localhost:5000/api/mama/updatePending/${id}`,{
+    method: 'PATCH',
+    headers: {
+      'content-type': 'application/json'
+    } ,
+    body:JSON.stringify({serviceStatus})
+  }).then(res=>res.json())
+  .then(data=>{
+    console.log(data);
+    toast.success('Updated Status Done')
+    if(data.modifiedCount > 0){
+      const remaining = pendingServices.filter(pService=> pService._id !==id);
+      const updated = pendingServices.find(service=>service._id ===id);
+      updated.serviceStatus = statusUpdate[0]
+      const newServiceUpdated = [updated, ...remaining];
+      console.log(newServiceUpdated);
+      setPendingService(newServiceUpdated)
+    }
+  })
+
+
+
+
+}
+
+
+
+
   return (
-    <li className="py-3 sm:py-4">
-      <div className="flex items-center space-x-4">
-        <div className="flex-shrink-0">
-          <img
-            className="w-8 h-8 rounded-full"
-            src="/docs/images/people/profile-picture-1.jpg"
-            alt="Neil image"
-          />
-        </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-sm font-medium text-gray-900 truncate dark:text-white">
-            Neil Sims
-          </p>
-          <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-            email@windster.com
-          </p>
-        </div>
-        <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-          $320
-        </div>
-      </div>
-    </li>
+<div className="mx-auto ml-10">
+    <div>
+  
+<label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select an option</label>
+<select id="countries" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option selected>Sort Status</option>
+  <option value="Pending">Pending</option>
+  <option value="In Progress">In Progress</option>
+  <option value="Completed">Completed</option>
+  
+</select>
+
+  </div>
+  <div>
+      <ul>
+       {
+         pendingServices?.map(pData=> <MyPendingWorkCard key={pData._id} pendingData={pData}
+           handleStatus={handleStatus}/>)
+       }
+     </ul>
+  </div>
+</div>
   );
 };
 

@@ -18,30 +18,29 @@ const MyBookingTable = ({ myBooked }) => {
     <>
       <div>
         <div className="py-3 border-b-2 sm:py-4">
-          <div className="flex items-center space-x-3 lg:space-x-48">
-            <div className="flex-shrink-0">
+          <div className="flex gap-5 items-center ">
+            <div className="">
               <img
                 className="w-24 h-24 rounded-3xl"
                 src={serviceImage}
-                alt="Neil image"
+                alt={serviceName}
               />
             </div>
-            <div className="flex-1 min-w-0">
+            <div className="">
               <p className="text-xl font-medium text-gray-900 truncate dark:text-white">
                 {serviceName}
               </p>
               <p className="text-sm text-gray-500 truncate dark:text-gray-400">
-                {providerEmail}
+                {providerEmail} <br />
+                {serviceTakingDate}
               </p>
             </div>
-            <div className="flex-1 min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-              {serviceTakingDate}
+           
+            <div className=" min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
+            Price: {servicePrice} BDT
             </div>
-            <div className="flex-1 min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-              $320
-            </div>
-            <div className="flex-1 min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-              {serviceStatus}
+            <div className=" min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
+             Status: {serviceStatus}
             </div>
           </div>
         </div>

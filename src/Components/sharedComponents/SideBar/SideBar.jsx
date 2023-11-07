@@ -10,7 +10,7 @@ const SideBar = () => {
   console.log(user);
   return (
     <div>
-      <aside className="hidden lg:flex flex-col w-64 h-screen px-4 py-8 overflow-y-auto bg-base-200 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
+      <aside className="hidden lg:flex flex-col w-64 min-h-screen px-4 py-8 overflow-y-auto bg-base-200 border-r rtl:border-r-0 rtl:border-l dark:bg-gray-900 dark:border-gray-700">
         <Link to="/" className="mx-auto">
           <LogoText />
         </Link>

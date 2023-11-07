@@ -15,11 +15,13 @@ import Dashboard from "../Pages/Dashboard/Dashboard";
 import MyBooking from "../Pages/MySchedules/MyBooking";
 import MyPending from "../Pages/MySchedules/MyPending";
 import MyScheduleLayout from "../Pages/MySchedules/MyScheduleLayout";
+import ErrorPage from "../Pages/ErrorPage/ErrorPage";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
+    errorElement:<ErrorPage/>,
     children: [
       {
         path: "/",

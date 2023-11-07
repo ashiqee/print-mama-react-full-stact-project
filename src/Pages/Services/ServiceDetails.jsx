@@ -30,21 +30,49 @@ const ServiceDetails = () => {
     e.preventDefault();
 
     const form = e.target;
+  const  providerEmail= form.providerEmail.value;
+   const userEmail =form.userEmail.value;
+
+
+
+
+  
 
     const bookedServiceData = {
       serviceName: form.name.value,
+      serviceId:id,
       serviceImage: serviceData?.image,
       servicePrice: form.price.value,
-      providerEmail: form.providerEmail.value,
+      providerEmail: providerEmail,
       serviceProviderName: serviceData?.serviceProviderName,
       providerImage: serviceData?.serviceProviderPhoto,
-      userEmail: form.userEmail.value,
+      userEmail: userEmail,
       serviceTakingDate: form.serviceTakingDate.value,
       serviceArea: form.serviceTakingArea.value,
       address: form.address.value,
       serviceStatus: "Pending",
     };
 
+
+   
+
+      if(providerEmail === userEmail){
+        toast.error("This is your service you can't booked");
+        return
+      }else{
+        // console.log(bookedServiceData);
+    const toastId = toast.loading("Product Purchase Pending...");
+    // post booking service in db
+    axiosSecure.post("/booking", bookedServiceData).then((res) => {
+      console.log(res.data);
+      if (res.data.insertedId) {
+        toast.success("Product Purchase SuccessFully", { id: toastId });
+      }
+    });
+      }
+   
+
+    // checkService(providerEmail,userEmail)
     // console.log(bookedServiceData);
     const toastId = toast.loading("Product Purchase Pending...");
     // post booking service in db
