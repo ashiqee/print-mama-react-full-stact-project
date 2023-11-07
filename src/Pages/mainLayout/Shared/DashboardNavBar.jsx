@@ -1,10 +1,10 @@
 import { Link, NavLink } from "react-router-dom";
-import LogoText from "../../../Components/sharedComponents/LogoText";
 
 import SignUpBtn from "../../../Components/sharedComponents/Button/SignUpBtn";
-import useAuth from "../../../Components/Hooks/useAuth";
+import LogoText from "../../../Components/sharedComponents/LogoText";
+import useAuth from "./../../../Components/Hooks/useAuth";
 
-const NavBar = () => {
+const DashboardNavBar = () => {
   const { user, logOut } = useAuth();
 
   const navMenu = (
@@ -41,6 +41,8 @@ const NavBar = () => {
     </>
   );
 
+  // Profile Menu
+
   const profileMenu = (
     <>
       <div className="space-y-3  text-center">
@@ -72,7 +74,7 @@ const NavBar = () => {
         </li>{" "}
         <li>
           <NavLink
-            to="/dashboard/myServices"
+            to="/myServices"
             className={({ isActive }) =>
               isActive
                 ? "text-secondary-focus font-bold border-b-2"
@@ -119,8 +121,8 @@ const NavBar = () => {
   );
 
   return (
-    <div className="container mx-auto ">
-      <header className="py-4 absolute z-10 container ">
+    <div className="container lg:hidden mx-auto ">
+      <header className="py-4  container ">
         <div className="   flex justify-between h-10">
           <div className="navbar-start  lg:hidden">
             <div className="dropdown">
@@ -171,7 +173,7 @@ const NavBar = () => {
                   <ul
                     tabIndex={0}
                     className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-gradient-to-r 
-                   from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
+                 from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
                   >
                     {profileMenu}
                   </ul>
@@ -182,7 +184,7 @@ const NavBar = () => {
                 {/* small device singUp  */}
                 <NavLink
                   className="px-3  text-sm py-2 font-semibold hover:bg-primary text-white
-                 transition-colors duration-300 transform border-2 rounded-md"
+               transition-colors duration-300 transform border-2 rounded-md"
                   to="/login"
                 >
                   Sign In
@@ -215,7 +217,7 @@ const NavBar = () => {
                   <ul
                     tabIndex={0}
                     className="menu menu-sm dropdown-content mt-3 z-[60] p-2  bg-gradient-to-r 
-                    from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
+                  from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
                   >
                     {profileMenu}
                   </ul>
@@ -241,4 +243,4 @@ const NavBar = () => {
   );
 };
 
-export default NavBar;
+export default DashboardNavBar;

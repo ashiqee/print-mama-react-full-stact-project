@@ -10,6 +10,11 @@ import MyServices from "../Pages/Services/MyServices/MyServices";
 import PrivateRoute from "./PrivateRoute";
 import UpdateService from "../Pages/Services/MyServices/UpdateService";
 import MySchedules from "../Pages/MySchedules/MySchedules";
+import DashboardLayout from "../Pages/Dashboard/DashboardLayout";
+import Dashboard from "../Pages/Dashboard/Dashboard";
+import MyBooking from "../Pages/MySchedules/MyBooking";
+import MyPending from "../Pages/MySchedules/MyPending";
+import MyScheduleLayout from "../Pages/MySchedules/MyScheduleLayout";
 
 const router = createBrowserRouter([
   {
@@ -40,14 +45,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/myServices",
-        element: (
-          <PrivateRoute>
-            <MyServices />
-          </PrivateRoute>
-        ),
-      },
+
       {
         path: "/updateService/:id",
         element: (
@@ -56,12 +54,6 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path:'/mySchedules',
-        element:<PrivateRoute>
-          <MySchedules/>
-        </PrivateRoute>
-      }
     ],
   },
   {
@@ -71,6 +63,51 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <Register />,
+  },
+
+  {
+    path: "/dashboard",
+    element: <DashboardLayout />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <Dashboard />,
+      },
+      {
+        path: "/dashboard/myServices",
+        element: (
+          <PrivateRoute>
+            <MyServices />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/dashboard/mySchedules",
+        element: (
+          <PrivateRoute>
+            <MyScheduleLayout />
+          </PrivateRoute>
+        ),
+        children: [
+          {
+            path: "/dashboard/mySchedules/myBooking",
+            element: (
+              <PrivateRoute>
+                <MyBooking />
+              </PrivateRoute>
+            ),
+          },
+          {
+            path: "/dashboard/mySchedules/myPending",
+            element: (
+              <PrivateRoute>
+                <MyPending />
+              </PrivateRoute>
+            ),
+          },
+        ],
+      },
+    ],
   },
 ]);
 

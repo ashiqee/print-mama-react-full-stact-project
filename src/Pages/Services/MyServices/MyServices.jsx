@@ -5,6 +5,7 @@ import MyServiceTable from "./MyServiceTable";
 import { useState } from "react";
 import MyServiceTableSM from "./MyServiceTableSM";
 import { toast } from "react-hot-toast";
+import DashboardHeader from "../../Dashboard/DashboardHeader";
 
 const MyServices = () => {
   const { user } = useAuth();
@@ -51,11 +52,16 @@ const MyServices = () => {
     });
     console.log("delete click");
   };
+  const headerView = "My Services";
 
   return (
-    <div className="relative top-20  container mx-auto ">
-      <div className="md:max-w-screen-xl mx-auto">
-        <section className="container hidden  md:block  px-4 mx-auto">
+    <div>
+      <DashboardHeader view={headerView} />
+      <div className="container w-screen ">
+        <div className=" w-full mx-auto">
+          <h2>My All service Search</h2>
+        </div>
+        <section className="container hidden mt-10 lg:block  px-4 mx-auto">
           <div className="flex flex-col">
             <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
               <div className="inline-block min-w-full py-2 align-middle md:px-6 lg:px-8">
@@ -146,7 +152,7 @@ const MyServices = () => {
         </section>
 
         {/* //small device */}
-        <div className="md:hidden  container mx-auto">
+        <div className="lg:hidden  container mx-auto">
           <table className="w-full  ">
             <thead className=" p-2 h-20 bg-slate-800 text-white dark:bg-gray-800">
               <th

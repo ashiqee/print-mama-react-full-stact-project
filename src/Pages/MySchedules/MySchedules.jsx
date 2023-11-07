@@ -3,16 +3,12 @@ import useAxiosSecure from "../../Components/Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Components/Hooks/useAuth";
 
-
 const MySchedules = () => {
+  // /mybooking?email=lores@print.com
 
-
-    // /mybooking?email=lores@print.com
-
-
-    const [myBookingData, setServiceData] = useState([]);
-    const axiosSecure = useAxiosSecure()
-    const {user} = useAuth()
+  const [myBookingData, setServiceData] = useState([]);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
   const getMyServiceData = async () => {
     // const url = `/myservice?email=${user?.email}`
@@ -44,18 +40,18 @@ const MySchedules = () => {
   }
 
   console.log(myBookingData);
-    return (
-        <div className="relative top-20 container mx-auto">
-           {/* <my booking section  */}
-           < div>
-<h2>My Bookings total: {myBookingData?.length} Services</h2>
+  return (
+    <div className="container mx-auto">
+      {/* <my booking section  */}
+      <div>
+        <h2>My Bookings total: {myBookingData?.length} Services</h2>
 
-{
-    myBookingData?.map(mybooked=> <li key={mybooked._id}> {mybooked.serviceName} </li> )
-}
-           </div>
-        </div>
-    );
+        {myBookingData?.map((mybooked) => (
+          <li key={mybooked._id}> {mybooked.serviceName} </li>
+        ))}
+      </div>
+    </div>
+  );
 };
 
 export default MySchedules;
