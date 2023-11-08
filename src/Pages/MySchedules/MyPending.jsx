@@ -40,13 +40,16 @@ const MyPending = () => {
 
     const serviceStatus = statusUpdate[0];
 
-    fetch(`http://localhost:5000/api/mama/updatePending/${id}`, {
-      method: "PATCH",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify({ serviceStatus }),
-    })
+    fetch(
+      `https://b8a11-server-side-ashiqee-ashiqee.vercel.app/api/mama/updatePending/${id}`,
+      {
+        method: "PATCH",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify({ serviceStatus }),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

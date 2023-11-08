@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useEffect } from "react";
 
 export const axiosSecure = axios.create({
-  baseURL: "http://localhost:5000/api/mama",
+  baseURL: "https://b8a11-server-side-ashiqee-ashiqee.vercel.app/api/mama",
   withCredentials: true,
 });
 

@@ -16,7 +16,7 @@ const MyServices = () => {
     // const url = `/myservice?email=${user?.email}`
 
     const res = await axios
-      .get(`/myservice?email=${user?.email}`)
+      .get(`/myService?email=${user?.email}`)
       .then((res) => res.data);
     console.log(res);
     setServiceData(res);
