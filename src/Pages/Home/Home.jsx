@@ -5,7 +5,8 @@ import PopularServices from "./PopularServices";
 import VideoBanner from "./VideoBanner";
 import "./home.css";
 import Discover from "./Discover";
-import MySchedules from "../MySchedules/MySchedules";
+
+import Countdown from "./CountDown";
 const Home = () => {
   return (
     <div>
@@ -14,6 +15,7 @@ const Home = () => {
         <PopularServices />
       </div>
       <AboutUs />
+      <Countdown/>
       <Discover />
       <ContactUs />
     </div>
