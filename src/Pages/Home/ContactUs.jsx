@@ -7,7 +7,7 @@ const ContactUs = () => {
           className="lg:bg-gradient-to-l bg-gradient-to-l mb-28 
       bg-opacity-20 hero-overlay from-[#3c3757] rounded-b-2xl to-gray-800 shadow-2xl  "
         >
-          <div className=" container md:mx-auto py-20 mx-10">
+          <div className=" container md:mx-auto py-20 ">
             <div
               className=" overflow-hidden   md:flex gap-10   py-2  
            rounded-xl"
