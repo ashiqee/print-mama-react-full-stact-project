@@ -41,7 +41,7 @@ const MyPending = () => {
     const serviceStatus = statusUpdate[0];
 
     fetch(
-      `http://localhost:5000/api/mama/updatePending/${id}`,
+      `https://b8a11-server-side-ashiqee-ashiqee.vercel.app/api/mama/updatePending/${id}`,
       {
         method: "PATCH",
         headers: {

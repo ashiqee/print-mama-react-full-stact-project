@@ -36,7 +36,7 @@ const UpdateService = () => {
     };
 
     fetch(
-      `http://localhost:5000/api/mama/update/${id}`,
+      `https://b8a11-server-side-ashiqee-ashiqee.vercel.app/api/mama/update/${id}`,
       {
         method: "PATCH",
         headers: {

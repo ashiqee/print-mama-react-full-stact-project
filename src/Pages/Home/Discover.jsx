@@ -8,7 +8,7 @@ import {
 
 const Discover = () => {
   return (
-    <div className="mb-20">
+    <div className="mb-20 ">
       <div className="text-center   my-10 mx-auto">
         <h2 className=" md:text-4xl text-2xl font-medium lg:text-6xl">
           Discover Customized Printing
@@ -19,8 +19,8 @@ const Discover = () => {
           Vivamus rhoncus placerat rhoncus.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 justify-between container mx-auto">
-        <div className="card">
+      <div className="grid   grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 justify-between container mx-auto">
+        <div className="card mx-auto">
           <div className="card relative transform hover:rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
@@ -36,7 +36,7 @@ const Discover = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card mx-auto">
           <div className="card relative transform hover:rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
@@ -52,7 +52,7 @@ const Discover = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card mx-auto">
           <div className="card relative transform hover:-rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
@@ -68,7 +68,7 @@ const Discover = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card mx-auto">
           <div className="card relative transform hover:rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
@@ -84,7 +84,7 @@ const Discover = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card mx-auto">
           <div className="card relative transform hover:-rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
@@ -100,7 +100,7 @@ const Discover = () => {
             </div>
           </div>
         </div>
-        <div className="card">
+        <div className="card mx-auto">
           <div className="card relative transform hover:rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
               <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
