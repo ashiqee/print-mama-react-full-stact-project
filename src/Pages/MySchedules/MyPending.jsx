@@ -11,7 +11,7 @@ const MyPending = () => {
   const url = `/pendingService?email=${user?.email}`;
 
   const [PendingDisplay, setDisplay] = useState([]);
-  const [isProgress, setProgress] = useState(0);
+  const [isProgress, setProgress] = useState([]);
   const [completed, setCompleted] = useState(0);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const MyPending = () => {
     const serviceStatus = statusUpdate[0];
 
     fetch(
-      `https://b8a11-server-side-ashiqee-ashiqee.vercel.app/api/mama/updatePending/${id}`,
+      `http://localhost:5000/api/mama/updatePending/${id}`,
       {
         method: "PATCH",
         headers: {
@@ -61,7 +61,7 @@ const MyPending = () => {
           const updated = pendingServices.find((service) => service._id === id);
           updated.serviceStatus = statusUpdate[0];
           const newServiceUpdated = [updated, ...remaining];
-          console.log(newServiceUpdated);
+          // console.log(newServiceUpdated);
           setPendingService(newServiceUpdated);
         }
       });
@@ -77,18 +77,18 @@ const MyPending = () => {
       (service) => service.serviceStatus === sortValue
     );
 
-    setPendingService(filter);
+    setDisplay(filter);
 
     const filterInProgress = pendingServices?.filter(
       (service) => service.serviceStatus === sortValue
     );
 
-    setPendingService(filterInProgress);
+    setDisplay(filterInProgress);
     const filterCompleted = pendingServices?.filter(
       (service) => service.serviceStatus === sortValue
     );
 
-    setPendingService(filterCompleted);
+    setDisplay(filterCompleted);
   };
 
   useEffect(() => {
@@ -112,7 +112,7 @@ const MyPending = () => {
             <option>Completed</option>
           </select>
 
-          <input type="submit" className="btn" value="Sort" />
+          <input type="submit" className="btn bg-primary w-20" value="Sort" />
         </form>
       </div>
       <div>

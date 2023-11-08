@@ -19,7 +19,7 @@ const Discover = () => {
           Vivamus rhoncus placerat rhoncus.
         </p>
       </div>
-      <div className="grid grid-cols-2 gap-2 md:grid-cols-6 justify-between container mx-auto">
+      <div className="grid grid-cols-2 gap-2 md:grid-cols-3 lg:grid-cols-6 justify-between container mx-auto">
         <div className="card">
           <div className="card relative transform hover:rotate-6 h-56 w-56 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
             <div className="group relative flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
