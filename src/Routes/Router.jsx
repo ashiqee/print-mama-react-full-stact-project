@@ -21,7 +21,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <MainLayout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
@@ -91,6 +91,14 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         children: [
+          {
+            path: "/dashboard/mySchedules",
+            element: (
+              <PrivateRoute>
+                <MySchedules />
+              </PrivateRoute>
+            ),
+          },
           {
             path: "/dashboard/mySchedules/myBooking",
             element: (

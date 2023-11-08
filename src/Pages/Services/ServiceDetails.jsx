@@ -64,7 +64,7 @@ const ServiceDetails = () => {
     const toastId = toast.loading("Product Purchase Pending...");
     // post booking service in db
     axiosSecure.post("/booking", bookedServiceData).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         toast.success("Product Purchase SuccessFully", { id: toastId });
       }
@@ -77,7 +77,7 @@ const ServiceDetails = () => {
     const toastId = toast.loading("Product Purchase Pending...");
     // post booking service in db
     axiosSecure.post("/booking", bookedServiceData).then((res) => {
-      console.log(res.data);
+      // console.log(res.data);
       if (res.data.insertedId) {
         toast.success("Product Purchase SuccessFully", { id: toastId });
       }

@@ -1,13 +1,21 @@
-import Btn from "../../Components/sharedComponents/Button/Btn";
-import Services from "../Services/Services";
-import VideoBanner from "./VideoBanner";
+import AboutUs from "./AboutUs";
+import ContactUs from "./ContactUs";
+import PopularServices from "./PopularServices";
 
+import VideoBanner from "./VideoBanner";
+import "./home.css";
+import Discover from "./Discover";
+import MySchedules from "../MySchedules/MySchedules";
 const Home = () => {
   return (
     <div>
-      
       <VideoBanner />
-      <Services/>
+      <div className="mb-32">
+        <PopularServices />
+      </div>
+      <AboutUs />
+      <Discover />
+      <ContactUs />
     </div>
   );
 };
