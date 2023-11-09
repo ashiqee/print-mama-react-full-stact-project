@@ -73,15 +73,15 @@ const ServiceDetails = () => {
    
 
     // checkService(providerEmail,userEmail)
-    // console.log(bookedServiceData);
-    const toastId = toast.loading("Product Purchase Pending...");
-    // post booking service in db
-    axiosSecure.post("/booking", bookedServiceData).then((res) => {
-      // console.log(res.data);
-      if (res.data.insertedId) {
-        toast.success("Product Purchase SuccessFully", { id: toastId });
-      }
-    });
+  //   // console.log(bookedServiceData);
+  //   const toastId = toast.loading("Product Purchase Pending...");
+  //   // post booking service in db
+  //   axiosSecure.post("/booking", bookedServiceData).then((res) => {
+  //     // console.log(res.data);
+  //     if (res.data.insertedId) {
+  //       toast.success("Product Purchase SuccessFully", { id: toastId });
+  //     }
+  //   });
   };
 
   return (

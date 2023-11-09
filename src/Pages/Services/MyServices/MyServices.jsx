@@ -57,7 +57,7 @@ const MyServices = () => {
   return (
     <div>
       <DashboardHeader view={headerView} />
-      <div className="container w-screen ">
+      <div className="container  ">
         <div className=" w-full mx-auto">
           <h2>My All service Search</h2>
         </div>

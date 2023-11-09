@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Components/Hooks/useAuth";
 import DashboardHeader from "../Dashboard/DashboardHeader";
 import MyBookingTable from "./MyBookingTable";
+import { Link } from "react-router-dom";
 
 const MyBooking = () => {
   // /mybooking?email=lores@print.com
@@ -43,14 +44,22 @@ const MyBooking = () => {
     return <p>Failed Load: {error}</p>;
   }
 
-  console.log(myBookingData);
+  // console.log(myBookingData);
   const view = "My Booking Page";
   return (
-    <div className=" container lg:w-[85vw]  ">
+    <div className=" container mx-auto   ">
       <DashboardHeader view={view} />
       {/* <my booking section  */}
       {!myBookingData.length ? (
-        <>No Service Available </>
+        <>
+
+        <h2 className="text-3xl">Booking Service Not Available</h2>
+        
+       <Link to='/services' >
+
+       <img src="https://danifoxhypnosis.com/wp-content/uploads/2016/09/booknow.gif" alt="" />
+       </Link>
+         </>
       ) : (
         <>
           <div className="mt-10">
@@ -66,10 +75,10 @@ const MyBooking = () => {
                 >
                   {/* for table resposive issue  hidden */}
                   <div> 
-                    <ul className=" hidden text-black font-semibold text-xl  ">
+                    <ul className=" flex gap-16 text-black font-semibold text-xl  ">
                       <li>Image</li>
                       <li>Service Info</li>
-                      <li> Date</li>
+                  
                       <li>price</li>
                       <li>Status</li>
                     </ul>
@@ -84,7 +93,7 @@ const MyBooking = () => {
             </div>
             <div className="grid grid-cols-1 "></div>
             <div>
-              <table hidden className="w-[85vw] p-10 ">
+              <table hidden className=" p-10 ">
                 <thead className=" p-2 h-20 bg-slate-800 text-white dark:bg-gray-800">
                   <th
                     scope="col"

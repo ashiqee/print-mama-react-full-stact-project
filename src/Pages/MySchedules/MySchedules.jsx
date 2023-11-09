@@ -86,10 +86,25 @@ const MySchedules = () => {
         </div>
         </Link>
       </div>
+ 
     
     </div>
-  <div className="btn"> <Link to='/dashboard/mySchedules/myBooking'>
-  MyBooking
+  <div > <Link to='/dashboard/mySchedules/myBooking'>
+  <div className="card mt-10  container mx-auto">
+       
+        <div className="card  transform hover:rotate-6 h-56 w-96 rounded-xl bg-secondary bg-opacity-10 transition-[all_400ms_cubic-bezier(0.03,0.98,0.52,0.99)_0s] will-change-transform">
+          <div className="group  flex h-full w-full select-none items-center justify-center rounded-lg border border-neutral-900 text-sm font-light text-slate-300">
+            <div className="duration-600 absolute -inset-0.5 -z-10 rounded-lg bg-gradient-to-b from-[#23727c] to-[#a7515c] opacity-0 blur transition group-hover:opacity-75" />
+            <span className="text-md bg-gradient-to-t from-neutral-400 to-white bg-clip-text font-bold text-transparent">
+              <span className="text-4xl  flex justify-center text-secondary"></span>
+              <h2 className="text-2xl text-center">My Booking</h2>
+              {/* <h2 className="text-2xl text-center">{completed}</h2> */}
+            </span>
+          </div>
+        </div>
+       
+      </div>
+
   </Link></div>
     </>
   );

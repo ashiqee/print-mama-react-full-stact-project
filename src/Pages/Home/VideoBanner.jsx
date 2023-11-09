@@ -5,7 +5,7 @@ const VideoBanner = () => {
   return (
     <div>
       <div
-        className="lg:bg-gradient-to-l bg-gradient-to-l relative z-0 top-0  max-h-screen 
+        className="lg:bg-gradient-to-l bg-gradient-to-l relative z-0 top-0  min-h-screen 
       bg-opacity-20 hero-overlay from-[#9080eb] rounded-b-2xl to-gray-800 shadow-2xl  "
       >
         <div className="mx-auto container">
@@ -13,7 +13,7 @@ const VideoBanner = () => {
             className=" overflow-hidden   md:flex    w-full py-2  
            rounded-xl"
           >
-            <div className="space-y-4 md:text-left text-center mx-2 my-auto">
+            <div className="space-y-4 md:text-left text-center mx-2 mt-20 my-auto">
               <h2>DIGITAL PRINTING SERVICE</h2>{" "}
               <AiFillPrinter className="text-6xl mx-auto md:mx-0 text-secondary " />
               <h2 className="text-3xl font-bold">

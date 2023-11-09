@@ -115,7 +115,10 @@ const MyPending = () => {
           <input type="submit" className="btn bg-primary w-20" value="Sort" />
         </form>
       </div>
-      <div>
+      {
+        !pendingServices.length ? <> No Available Any Service </>:<>
+        
+        <div>
         <ul>
           {PendingDisplay?.map((pData) => (
             <MyPendingWorkCard
@@ -126,6 +129,8 @@ const MyPending = () => {
           ))}
         </ul>
       </div>
+        </>
+      }
     </div>
   );
 };

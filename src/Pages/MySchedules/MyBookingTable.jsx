@@ -36,11 +36,11 @@ const MyBookingTable = ({ myBooked }) => {
               </p>
             </div>
            
-            <div className=" min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-            Price: {servicePrice} BDT
+            <div className="  items-center text-base font-semibold text-gray-900 dark:text-white">
+           {servicePrice} BDT
             </div>
             <div className=" min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-             Status: {serviceStatus}
+             {serviceStatus}
             </div>
           </div>
         </div>
