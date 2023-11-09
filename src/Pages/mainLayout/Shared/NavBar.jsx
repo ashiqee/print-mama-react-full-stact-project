@@ -3,9 +3,10 @@ import LogoText from "../../../Components/sharedComponents/LogoText";
 
 import SignUpBtn from "../../../Components/sharedComponents/Button/SignUpBtn";
 import useAuth from "../../../Components/Hooks/useAuth";
+import LoadingLottie from "../../../Components/Hooks/Animation/LoadingLottie";
 
 const NavBar = () => {
-  const { user, logOut } = useAuth();
+  const { user, logOut, loading } = useAuth();
 
   const navMenu = (
     <>
@@ -119,125 +120,136 @@ const NavBar = () => {
   );
 
   return (
-    <div className="container mx-auto ">
-      <header className="py-4 absolute z-10 container ">
-        <div className="   flex justify-between h-10">
-          <div className="navbar-start  lg:hidden">
-            <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost btn-circle">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="h-5 w-5"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M4 6h16M4 12h16M4 18h7"
-                  />
-                </svg>
-              </label>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                {navMenu}
-              </ul>
-            </div>
-          </div>
-          <div className="flex   items-center">
-            <h2 className="font-bold mr-5">
-              <Link to="/">
-                <LogoText />
-              </Link>
-            </h2>
-          </div>
-          <div className="items-center flex-shrink-0 lg:hidden gap-5 flex">
-            {user ? (
-              <>
-                <div className="dropdown dropdown-end">
-                  <label
-                    tabIndex={0}
-                    className="btn btn-ghost btn-circle avatar"
-                  >
-                    <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
-                      <img className="  " src={user?.photoURL} />
-                    </div>
-                  </label>
-
-                  <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-gradient-to-r 
-                   from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
-                  >
-                    {profileMenu}
-                  </ul>
+    <>
+      {loading ? (
+        <>
+          <LoadingLottie />
+        </>
+      ) : (
+        <>
+          {" "}
+          <div className="container mx-auto ">
+            <header className="py-4 absolute z-10 container ">
+              <div className="   flex justify-between mx-5 md:mx-0 h-10">
+                <div className="navbar-start  lg:hidden">
+                  <div className="dropdown">
+                    <label tabIndex={0} className="btn btn-ghost btn-circle">
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="h-5 w-5"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M4 6h16M4 12h16M4 18h7"
+                        />
+                      </svg>
+                    </label>
+                    <ul
+                      tabIndex={0}
+                      className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52"
+                    >
+                      {navMenu}
+                    </ul>
+                  </div>
                 </div>
-              </>
-            ) : (
-              <>
-                {/* small device singUp  */}
-                <NavLink
-                  className="px-3  text-sm py-2 font-semibold hover:bg-primary text-white
-                 transition-colors duration-300 transform border-2 rounded-md"
-                  to="/login"
-                >
-                  Sign In
-                </NavLink>
-                <NavLink className="hidden md:block" to="/signup">
-                  <SignUpBtn />
-                </NavLink>
-              </>
-            )}
-          </div>
-
-          <div className="items-center flex-shrink-0 hidden gap-5 lg:flex">
-            <div className="flex justify-end items-center">
-              <ul className="items-stretch justify-end text-2xl hidden space-x-10 lg:flex">
-                {navMenu}
-              </ul>
-            </div>
-            {user ? (
-              <>
-                <div className="dropdown dropdown-end">
-                  <label
-                    tabIndex={0}
-                    className="btn btn-ghost btn-circle avatar"
-                  >
-                    <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
-                      <img className="  " src={user?.photoURL} />
-                    </div>
-                  </label>
-                  {/* lg profile menu */}
-                  <ul
-                    tabIndex={0}
-                    className="menu menu-sm dropdown-content mt-3 z-[60] p-2  bg-gradient-to-r 
-                    from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
-                  >
-                    {profileMenu}
-                  </ul>
+                <div className="flex   items-center">
+                  <h2 className="font-bold mr-5">
+                    <Link to="/">
+                      <LogoText />
+                    </Link>
+                  </h2>
                 </div>
-              </>
-            ) : (
-              <>
-                <NavLink
-                  className="px-3 py-2 text-sm font-semibold hover:bg-primary text-white transition-colors duration-300 transform border-2 rounded-md"
-                  to="/login"
-                >
-                  Sign In
-                </NavLink>
-                <NavLink className="" to="/signup">
-                  <SignUpBtn />
-                </NavLink>{" "}
-              </>
-            )}
+                <div className="items-center flex-shrink-0 lg:hidden gap-5 flex">
+                  {user ? (
+                    <>
+                      <div className="dropdown dropdown-end">
+                        <label
+                          tabIndex={0}
+                          className="btn btn-ghost btn-circle avatar"
+                        >
+                          <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
+                            <img className="  " src={user?.photoURL} />
+                          </div>
+                        </label>
+
+                        <ul
+                          tabIndex={0}
+                          className="menu menu-sm dropdown-content mt-3 z-[1] p-2  bg-gradient-to-r 
+                 from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
+                        >
+                          {profileMenu}
+                        </ul>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      {/* small device singUp  */}
+                      <NavLink
+                        className="px-3  text-sm py-2 font-semibold hover:bg-primary text-white
+               transition-colors duration-300 transform border-2 rounded-md"
+                        to="/login"
+                      >
+                        Sign In
+                      </NavLink>
+                      <NavLink className="hidden md:block" to="/signup">
+                        <SignUpBtn />
+                      </NavLink>
+                    </>
+                  )}
+                </div>
+
+                <div className="items-center flex-shrink-0 hidden gap-5 lg:flex">
+                  <div className="flex justify-end items-center">
+                    <ul className="items-stretch justify-end text-2xl hidden space-x-10 lg:flex">
+                      {navMenu}
+                    </ul>
+                  </div>
+                  {user ? (
+                    <>
+                      <div className="dropdown dropdown-end">
+                        <label
+                          tabIndex={0}
+                          className="btn btn-ghost btn-circle avatar"
+                        >
+                          <div className="w-12 rounded-full ring ring-white dark:ring-gray-900 ">
+                            <img className="  " src={user?.photoURL} />
+                          </div>
+                        </label>
+                        {/* lg profile menu */}
+                        <ul
+                          tabIndex={0}
+                          className="menu menu-sm dropdown-content mt-3 z-[60] p-2  bg-gradient-to-r 
+                  from-slate-900 to-cyan-600 shadow-2xl opacity-50 rounded-box w-72"
+                        >
+                          {profileMenu}
+                        </ul>
+                      </div>
+                    </>
+                  ) : (
+                    <>
+                      <NavLink
+                        className="px-3 py-2 text-sm font-semibold hover:bg-primary text-white transition-colors duration-300 transform border-2 rounded-md"
+                        to="/login"
+                      >
+                        Sign In
+                      </NavLink>
+                      <NavLink className="" to="/signup">
+                        <SignUpBtn />
+                      </NavLink>{" "}
+                    </>
+                  )}
+                </div>
+              </div>
+            </header>
           </div>
-        </div>
-      </header>
-    </div>
+        </>
+      )}
+    </>
   );
 };
 

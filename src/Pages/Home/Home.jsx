@@ -7,6 +7,7 @@ import "./home.css";
 import Discover from "./Discover";
 
 import Countdown from "./CountDown";
+import Walking from "../../Components/Hooks/Animation/Walking";
 
 const Home = () => {
   return (
@@ -19,6 +20,7 @@ const Home = () => {
       <Countdown />
       <Discover />
       <ContactUs />
+      <Walking />
     </div>
   );
 };
