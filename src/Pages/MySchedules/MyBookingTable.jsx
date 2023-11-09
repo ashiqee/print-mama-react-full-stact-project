@@ -1,5 +1,5 @@
 const MyBookingTable = ({ myBooked }) => {
-  console.log(myBooked);
+  // console.log(myBooked);
   const {
     address,
     providerEmail,
@@ -35,12 +35,12 @@ const MyBookingTable = ({ myBooked }) => {
                 {serviceTakingDate}
               </p>
             </div>
-           
+
             <div className="  items-center text-base font-semibold text-gray-900 dark:text-white">
-           {servicePrice} BDT
+              {servicePrice} BDT
             </div>
             <div className=" min-w-0 items-center text-base font-semibold text-gray-900 dark:text-white">
-             {serviceStatus}
+              {serviceStatus}
             </div>
           </div>
         </div>

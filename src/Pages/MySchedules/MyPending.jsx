@@ -115,22 +115,23 @@ const MyPending = () => {
           <input type="submit" className="btn bg-primary w-20" value="Sort" />
         </form>
       </div>
-      {
-        !pendingServices.length ? <> No Available Any Service </>:<>
-        
-        <div>
-        <ul>
-          {PendingDisplay?.map((pData) => (
-            <MyPendingWorkCard
-              key={pData._id}
-              pendingData={pData}
-              handleStatus={handleStatus}
-            />
-          ))}
-        </ul>
-      </div>
+      {!pendingServices.length ? (
+        <> No Available Any Service </>
+      ) : (
+        <>
+          <div>
+            <ul>
+              {PendingDisplay?.map((pData) => (
+                <MyPendingWorkCard
+                  key={pData._id}
+                  pendingData={pData}
+                  handleStatus={handleStatus}
+                />
+              ))}
+            </ul>
+          </div>
         </>
-      }
+      )}
     </div>
   );
 };

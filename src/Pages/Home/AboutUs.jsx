@@ -1,6 +1,7 @@
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineMail } from "react-icons/Ai";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const AboutUs = () => {
   return (
@@ -66,12 +67,16 @@ const AboutUs = () => {
                     border="0"
                   />
                 </div>
-
-                <img
-                  className="rounded-xl w-full md:w-3/5  md:ml-auto"
-                  src="https://wdtprintme.wpengine.com/wp-content/uploads/2023/09/Mega-Menu-Banner-5.png"
-                  alt=""
-                />
+                <motion.div
+                  whileHover={{ scale: 1.4 }}
+                  whileTap={{ scale: 0.8 }}
+                >
+                  <img
+                    className="rounded-xl w-full  md:w-3/5  md:ml-auto"
+                    src="https://wdtprintme.wpengine.com/wp-content/uploads/2023/09/Mega-Menu-Banner-5.png"
+                    alt=""
+                  />
+                </motion.div>
               </div>
             </div>
           </div>

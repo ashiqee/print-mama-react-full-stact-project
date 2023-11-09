@@ -59,7 +59,7 @@ const MyServices = () => {
       <DashboardHeader view={headerView} />
       <div className="container  ">
         <div className=" w-full mx-auto">
-          <h2>My All service Search</h2>
+          {/* <h2>My All Service Search</h2> */}
         </div>
         <section className="container hidden mt-10 lg:block  px-4 mx-auto">
           <div className="flex flex-col">

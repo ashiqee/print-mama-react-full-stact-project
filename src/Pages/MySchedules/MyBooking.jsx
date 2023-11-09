@@ -52,14 +52,15 @@ const MyBooking = () => {
       {/* <my booking section  */}
       {!myBookingData.length ? (
         <>
+          <h2 className="text-3xl">You have not booked any services yet</h2>
 
-        <h2 className="text-3xl">Booking Service Not Available</h2>
-        
-       <Link to='/services' >
-
-       <img src="https://danifoxhypnosis.com/wp-content/uploads/2016/09/booknow.gif" alt="" />
-       </Link>
-         </>
+          <Link to="/services">
+            <img
+              src="https://danifoxhypnosis.com/wp-content/uploads/2016/09/booknow.gif"
+              alt=""
+            />
+          </Link>
+        </>
       ) : (
         <>
           <div className="mt-10">
@@ -74,11 +75,11 @@ const MyBooking = () => {
                   className="divide-y divide-base-200 dark:divide-gray-700"
                 >
                   {/* for table resposive issue  hidden */}
-                  <div> 
+                  <div>
                     <ul className=" flex gap-16 text-black font-semibold text-xl  ">
                       <li>Image</li>
                       <li>Service Info</li>
-                  
+
                       <li>price</li>
                       <li>Status</li>
                     </ul>

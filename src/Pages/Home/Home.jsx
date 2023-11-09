@@ -7,6 +7,7 @@ import "./home.css";
 import Discover from "./Discover";
 
 import Countdown from "./CountDown";
+
 const Home = () => {
   return (
     <div>
@@ -15,7 +16,7 @@ const Home = () => {
         <PopularServices />
       </div>
       <AboutUs />
-      <Countdown/>
+      <Countdown />
       <Discover />
       <ContactUs />
     </div>
