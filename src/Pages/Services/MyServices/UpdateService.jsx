@@ -59,7 +59,7 @@ const UpdateService = () => {
   };
 
   return (
-    <div className="relative top-40 container border    lg:flex my-auto  mx-auto  ">
+    <div className="relative  container     lg:flex my-auto  mx-auto  ">
       <div className=" md:w-1/2 lg:flex">
         <div className="text-lg space-y-5 mx-14 md:mx-0 mb-2">
           <h2 className="text-2xl text-secondary">

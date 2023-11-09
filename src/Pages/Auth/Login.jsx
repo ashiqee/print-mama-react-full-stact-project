@@ -24,6 +24,7 @@ const Login = () => {
 
     try {
       await signInUser(email, password);
+      navigate(location?.state ? location?.state : '/')
       toast.success("SingIn Successfully");
 //get access token
 
@@ -47,7 +48,7 @@ const Login = () => {
   const handleGoogleLogin = async () => {
     try {
       await googleLogin();
-      navigate("/");
+      navigate(location?.state ? location?.state : '/')
     } catch (err) {
       console.log(err);
     }

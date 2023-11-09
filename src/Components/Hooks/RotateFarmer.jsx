@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 const RotateFarmer = () => {
+  
   return (
     <motion.div
       animate={{

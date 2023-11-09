@@ -31,7 +31,7 @@ const SideBar = () => {
 
         <div className="flex flex-col justify-between flex-1 mt-6">
           <nav>
-            <a
+            <NavLink to='/dashboard/mySchedules'
               className="flex items-center px-4 py-2 text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-800 dark:text-gray-200"
               href="#"
             >
@@ -51,7 +51,7 @@ const SideBar = () => {
               </svg>
 
               <span className="mx-4 font-medium">Dashboard</span>
-            </a>
+            </NavLink>
 
             <NavLink
               className="flex items-center px-4 py-2 mt-5 text-gray-600 transition-colors duration-300 transform rounded-lg dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 dark:hover:text-gray-200 hover:text-gray-700"
@@ -117,7 +117,9 @@ const SideBar = () => {
               <BiBookmarks />
               <details tabIndex={0}>
                 <summary className="flex ml-4 items-center gap-3">
-                  <span className="font-medium">My Schedules</span>
+                <Link to='/dashboard/mySchedules'>
+                <span className="font-medium">My Schedules</span>
+                </Link> 
 
                   <span className="text-2xl text-secondary font-bold">
                     <AiOutlineDown />
